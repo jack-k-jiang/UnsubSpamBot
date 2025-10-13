@@ -1,10 +1,7 @@
 """
 Lightweight spam detector as fallback whe                         score += 2
             
-        #         if re.search(r'[^\x00-\x7F]', text):  # Non-ASCII chars
-            score += 1
-            
-        if re.search(r'\s{5,}', text):  # Lots of whitespacepatterns
+        # Money patterns
         money_patterns = [  score += 3
             
         if re.search(r'[A-Z]{4,}', text): score += 2
