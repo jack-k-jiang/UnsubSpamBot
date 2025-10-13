@@ -1,0 +1,47 @@
+# UnsubSpamBot - Intelligent Email Management System
+# Core ML Dependencies
+scikit-learn>=1.3.0
+numpy>=1.24.0
+pandas>=2.0.0
+
+# Natural Language Processing
+nltk>=3.8
+
+# Web Requests and URL Analysis
+requests>=2.31.0
+urllib3>=2.0.0
+
+# Email Processing
+imapclient>=2.3.1
+email-validator>=2.0.0
+
+# Database Support
+pymongo>=4.5.0  # For MongoDB integration
+sqlite3  # Built-in with Python
+
+# Utility Libraries
+python-dotenv>=1.0.0  # For environment variables
+tqdm>=4.65.0  # Progress bars
+joblib>=1.3.0  # Model serialization
+beautifulsoup4>=4.12.0  # HTML parsing for email content
+
+# Logging and Configuration
+pyyaml>=6.0  # For YAML config files
+colorlog>=6.7.0  # Colored logging output
+
+# Security and Cryptography
+cryptography>=41.0.0  # For secure email connections
+certifi>=2023.7.22  # SSL certificate verification
+
+# Development and Testing (Optional)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.7.0
+flake8>=6.0.0
+
+# Optional: Enhanced Features
+# Uncomment if needed:
+# spacy>=3.6.0  # Advanced NLP features
+# transformers>=4.21.0  # Transformer models for better spam detection
+# torch>=2.0.0  # PyTorch for deep learning models
+# tensorflow>=2.13.0  # TensorFlow alternative
