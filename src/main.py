@@ -3,7 +3,7 @@ UnsubSpamBot - Intelligent Email Management System
 Main application orchestrator for automated spam detection and unsubscription management.
 
 Features:
-- Ensemble ML models (Naive Bayes, Random Forest, Logistic Regression)
+- Ensemble ML models
 - Comprehensive URL security analysis with VirusTotal integration
 - Phishing detection and redirect chain analysis
 - Batch processing of 100+ emails per run
@@ -25,8 +25,6 @@ import json
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
 # Import from parent directory
-import sys
-import os
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
 from config.settings import LOGGING_CONFIG, EMAIL_CONFIG, DATABASE_CONFIG
@@ -53,7 +51,7 @@ class UnsubSpamBot:
         self.spam_detector = None
         self.url_analyzer = None
         
-        logger.info("🚀 UnsubSpamBot - Intelligent Email Management System")
+        logger.info("UnsubSpamBot - Intelligent Email Management System")
         logger.info("=" * 60)
         
         self._initialize_components()
@@ -101,27 +99,27 @@ class UnsubSpamBot:
         """Initialize all system components."""
         try:
             # Initialize spam detector
-            logger.info("📧 Initializing spam detection system...")
+            logger.info("Initializing spam detection system...")
             self.spam_detector = SpamDetector()
             
             # Check if pre-trained model exists
             from config.settings import MODEL_PATHS
             if MODEL_PATHS['spam_classifier'].exists():
-                logger.info("✅ Pre-trained spam model found and loaded")
+                logger.info("Pre-trained spam model found and loaded")
             else:
-                logger.warning("⚠️ No pre-trained model found, using fallback detection")
+                logger.warning("No pre-trained model found, using fallback detection")
             
             # Initialize URL analyzer
-            logger.info("🔗 Initializing URL security analyzer...")
+            logger.info("Initializing URL security analyzer...")
             self.url_analyzer = URLAnalyzer()
             
             if self.config['features']['virustotal_enabled']:
-                logger.info("✅ VirusTotal integration enabled")
+                logger.info("VirusTotal integration enabled")
             else:
-                logger.warning("⚠️ VirusTotal API key not configured")
+                logger.warning("VirusTotal API key not configured")
             
             # Initialize email manager
-            logger.info("📨 Initializing email manager...")
+            logger.info("Initializing email manager...")
             self.email_manager = EmailManager(
                 imap_server=self.config['email']['imap_server'],
                 smtp_server=self.config['email']['smtp_server'],
@@ -129,45 +127,45 @@ class UnsubSpamBot:
                 password=self.config['email']['password']
             )
             
-            logger.info("✅ All components initialized successfully")
+            logger.info("All components initialized successfully")
             self._display_system_info()
             
         except Exception as e:
-            logger.error(f"❌ Failed to initialize components: {e}")
+            logger.error(f"Failed to initialize components: {e}")
             raise
     
     def _display_system_info(self):
         """Display system information and capabilities."""
         logger.info("\n" + "=" * 60)
-        logger.info("📊 SYSTEM CAPABILITIES")
+        logger.info("SYSTEM CAPABILITIES")
         logger.info("=" * 60)
         
         # ML capabilities
-        ml_status = "✅ Ensemble ML Models" if self.spam_detector.ml_available else "⚠️ Lightweight Detection"
-        logger.info(f"🧠 Spam Detection: {ml_status}")
+        ml_status = "Ensemble ML Models" if self.spam_detector.ml_available else "Lightweight Detection"
+        logger.info(f"Spam Detection: {ml_status}")
         
         if self.spam_detector.ml_available:
-            logger.info("   • Naive Bayes Classifier")
-            logger.info("   • Random Forest Classifier") 
-            logger.info("   • Logistic Regression")
-            logger.info("   • Ensemble Voting System")
+            logger.info("   - Naive Bayes Classifier")
+            logger.info("   - Random Forest Classifier") 
+            logger.info("   - Logistic Regression")
+            logger.info("   - Ensemble Voting System")
         
         # URL analysis capabilities
-        logger.info("🔗 URL Security Analysis:")
-        logger.info("   • Phishing Detection")
-        logger.info("   • Redirect Chain Analysis")
-        logger.info("   • Malicious Domain Detection")
+        logger.info("URL Security Analysis:")
+        logger.info("   - Phishing Detection")
+        logger.info("   - Redirect Chain Analysis")
+        logger.info("   - Malicious Domain Detection")
         
         if self.config['features']['virustotal_enabled']:
-            logger.info("   • VirusTotal Integration ✅")
+            logger.info("   - VirusTotal Integration: Enabled")
         else:
-            logger.info("   • VirusTotal Integration ❌")
+            logger.info("   - VirusTotal Integration: Disabled")
         
         # Processing capabilities
-        logger.info(f"⚡ Email Processing:")
-        logger.info(f"   • Batch Size: {self.config['processing']['batch_size']} emails")
-        logger.info(f"   • Confidence Threshold: {self.config['processing']['confidence_threshold']*100}%")
-        logger.info(f"   • Auto-Unsubscribe: {'✅' if self.config['processing']['auto_unsubscribe'] else '❌'}")
+        logger.info("Email Processing:")
+        logger.info(f"   - Batch Size: {self.config['processing']['batch_size']} emails")
+        logger.info(f"   - Confidence Threshold: {self.config['processing']['confidence_threshold']*100}%")
+        logger.info(f"   - Auto-Unsubscribe: {'Enabled' if self.config['processing']['auto_unsubscribe'] else 'Disabled'}")
         
         logger.info("=" * 60 + "\n")
     
@@ -179,17 +177,17 @@ class UnsubSpamBot:
         if auto_unsubscribe is None:
             auto_unsubscribe = self.config['processing']['auto_unsubscribe']
         
-        logger.info(f"🔄 Starting email processing...")
-        logger.info(f"   • Days back: {days_back}")
-        logger.info(f"   • Auto-unsubscribe: {'✅' if auto_unsubscribe else '❌'}")
+        logger.info("Starting email processing...")
+        logger.info(f"   - Days back: {days_back}")
+        logger.info(f"   - Auto-unsubscribe: {'Enabled' if auto_unsubscribe else 'Disabled'}")
         
         start_time = time.time()
         
         try:
             # Validate email credentials
             if not self.config['email']['username'] or not self.config['email']['password']:
-                logger.error("❌ Email credentials not configured")
-                logger.info("💡 Set EMAIL_USERNAME and EMAIL_PASSWORD environment variables")
+                logger.error("Email credentials not configured")
+                logger.info("Set EMAIL_USERNAME and EMAIL_PASSWORD environment variables")
                 return ProcessingStats()
             
             # Process emails
@@ -204,63 +202,63 @@ class UnsubSpamBot:
             return stats
             
         except Exception as e:
-            logger.error(f"❌ Email processing failed: {e}")
+            logger.error(f"Email processing failed: {e}")
             return ProcessingStats()
     
     def _display_processing_results(self, stats: ProcessingStats):
         """Display processing results in a formatted way."""
         logger.info("\n" + "=" * 60)
-        logger.info("📊 PROCESSING RESULTS")
+        logger.info("PROCESSING RESULTS")
         logger.info("=" * 60)
         
-        logger.info(f"📧 Total Emails Processed: {stats.total_processed}")
-        logger.info(f"🚫 Spam Detected: {stats.spam_detected}")
+        logger.info(f"Total Emails Processed: {stats.total_processed}")
+        logger.info(f"Spam Detected: {stats.spam_detected}")
         
         if stats.total_processed > 0:
             spam_rate = (stats.spam_detected / stats.total_processed) * 100
-            logger.info(f"📈 Spam Rate: {spam_rate:.1f}%")
+            logger.info(f"Spam Rate: {spam_rate:.1f}%")
         
-        logger.info(f"🔄 Unsubscribe Attempts: {stats.unsubscribe_attempts}")
-        logger.info(f"✅ Successful Unsubscribes: {stats.successful_unsubscribes}")
-        logger.info(f"❌ Failed Unsubscribes: {stats.failed_unsubscribes}")
+        logger.info(f"Unsubscribe Attempts: {stats.unsubscribe_attempts}")
+        logger.info(f"Successful Unsubscribes: {stats.successful_unsubscribes}")
+        logger.info(f"Failed Unsubscribes: {stats.failed_unsubscribes}")
         
         if stats.unsubscribe_attempts > 0:
             success_rate = (stats.successful_unsubscribes / stats.unsubscribe_attempts) * 100
-            logger.info(f"📈 Unsubscribe Success Rate: {success_rate:.1f}%")
+            logger.info(f"Unsubscribe Success Rate: {success_rate:.1f}%")
         
-        logger.info(f"⏱️ Processing Time: {stats.processing_time:.2f} seconds")
+        logger.info(f"Processing Time: {stats.processing_time:.2f} seconds")
         
         if stats.errors > 0:
-            logger.warning(f"⚠️ Errors: {stats.errors}")
+            logger.warning(f"Errors: {stats.errors}")
         
         logger.info("=" * 60 + "\n")
     
     def analyze_url(self, url: str) -> dict:
         """Analyze a single URL for security threats."""
-        logger.info(f"🔗 Analyzing URL: {url}")
+        logger.info(f"Analyzing URL: {url}")
         
         try:
             result = self.url_analyzer.comprehensive_analysis(url)
             
-            logger.info(f"📊 Analysis Results:")
-            logger.info(f"   • Risk Level: {result.get('overall_risk_level', 'unknown').upper()}")
-            logger.info(f"   • Risk Score: {result.get('overall_risk_score', 0):.2f}/10")
+            logger.info("Analysis Results:")
+            logger.info(f"   - Risk Level: {result.get('overall_risk_level', 'unknown').upper()}")
+            logger.info(f"   - Risk Score: {result.get('overall_risk_score', 0):.2f}/10")
             
             recommendations = result.get('recommendations', [])
             if recommendations:
-                logger.info("💡 Recommendations:")
+                logger.info("Recommendations:")
                 for rec in recommendations[:3]:  # Show first 3 recommendations
-                    logger.info(f"   • {rec}")
+                    logger.info(f"   - {rec}")
             
             return result
             
         except Exception as e:
-            logger.error(f"❌ URL analysis failed: {e}")
+            logger.error(f"URL analysis failed: {e}")
             return {}
     
     def test_spam_detection(self, text: str) -> dict:
         """Test spam detection on provided text."""
-        logger.info("🧠 Testing spam detection...")
+        logger.info("Testing spam detection...")
         
         try:
             prediction, confidence = self.spam_detector.predict(text)
@@ -274,76 +272,76 @@ class UnsubSpamBot:
                 'threshold': EMAIL_CONFIG['confidence_threshold']
             }
             
-            logger.info(f"📊 Detection Results:")
-            logger.info(f"   • Prediction: {'SPAM' if prediction == 1 else 'HAM'}")
-            logger.info(f"   • Confidence: {confidence:.2f}")
-            logger.info(f"   • Above Threshold: {'✅' if is_spam else '❌'}")
+            logger.info("Detection Results:")
+            logger.info(f"   - Prediction: {'SPAM' if prediction == 1 else 'HAM'}")
+            logger.info(f"   - Confidence: {confidence:.2f}")
+            logger.info(f"   - Above Threshold: {'Yes' if is_spam else 'No'}")
             
             return result
             
         except Exception as e:
-            logger.error(f"❌ Spam detection test failed: {e}")
+            logger.error(f"Spam detection test failed: {e}")
             return {}
     
     def get_statistics(self, days: int = 30) -> dict:
         """Get processing statistics for the last N days."""
-        logger.info(f"📊 Getting statistics for last {days} days...")
+        logger.info(f"Getting statistics for last {days} days...")
         
         try:
             stats = self.email_manager.get_processing_stats(days=days)
             
             if stats:
-                logger.info(f"📈 Statistics Summary:")
-                logger.info(f"   • Total Emails: {stats.get('total_emails_processed', 0)}")
-                logger.info(f"   • Spam Detected: {stats.get('spam_detected', 0)}")
-                logger.info(f"   • Successful Unsubscribes: {stats.get('successful_unsubscribes', 0)}")
-                logger.info(f"   • Spam Rate: {stats.get('spam_percentage', 0):.1f}%")
-                logger.info(f"   • Unsubscribe Success Rate: {stats.get('unsubscribe_success_rate', 0):.1f}%")
+                logger.info("Statistics Summary:")
+                logger.info(f"   - Total Emails: {stats.get('total_emails_processed', 0)}")
+                logger.info(f"   - Spam Detected: {stats.get('spam_detected', 0)}")
+                logger.info(f"   - Successful Unsubscribes: {stats.get('successful_unsubscribes', 0)}")
+                logger.info(f"   - Spam Rate: {stats.get('spam_percentage', 0):.1f}%")
+                logger.info(f"   - Unsubscribe Success Rate: {stats.get('unsubscribe_success_rate', 0):.1f}%")
             else:
-                logger.warning("⚠️ No statistics available")
+                logger.warning("No statistics available")
             
             return stats
             
         except Exception as e:
-            logger.error(f"❌ Failed to get statistics: {e}")
+            logger.error(f"Failed to get statistics: {e}")
             return {}
     
     def run_continuous_monitoring(self):
         """Run continuous email monitoring."""
         interval_hours = self.config['processing']['check_interval_hours']
         
-        logger.info(f"🔄 Starting continuous monitoring...")
-        logger.info(f"   • Check interval: {interval_hours} hours")
-        logger.info(f"   • Press Ctrl+C to stop")
+        logger.info("Starting continuous monitoring...")
+        logger.info(f"   - Check interval: {interval_hours} hours")
+        logger.info("   - Press Ctrl+C to stop")
         
         try:
             self.email_manager.run_continuous_monitoring(interval_hours=interval_hours)
         except KeyboardInterrupt:
-            logger.info("🛑 Continuous monitoring stopped by user")
+            logger.info("Continuous monitoring stopped by user")
         except Exception as e:
-            logger.error(f"❌ Continuous monitoring failed: {e}")
+            logger.error(f"Continuous monitoring failed: {e}")
     
     def train_model(self, dataset_path: str) -> bool:
         """Train spam detection model with provided dataset."""
-        logger.info(f"🧠 Training spam detection model...")
-        logger.info(f"   • Dataset: {dataset_path}")
+        logger.info("Training spam detection model...")
+        logger.info(f"   - Dataset: {dataset_path}")
         
         if not Path(dataset_path).exists():
-            logger.error(f"❌ Dataset file not found: {dataset_path}")
+            logger.error(f"Dataset file not found: {dataset_path}")
             return False
         
         try:
             success = self.spam_detector.train_model(dataset_path, model_type='ensemble')
             
             if success:
-                logger.info("✅ Model training completed successfully")
+                logger.info("Model training completed successfully")
             else:
-                logger.error("❌ Model training failed")
+                logger.error("Model training failed")
             
             return success
             
         except Exception as e:
-            logger.error(f"❌ Model training failed: {e}")
+            logger.error(f"Model training failed: {e}")
             return False
 
 def create_parser():
@@ -435,13 +433,13 @@ def main():
             bot.train_model(args.dataset)
             
         elif args.command == 'config':
-            logger.info("📋 Current Configuration:")
+            logger.info("Current Configuration:")
             logger.info(json.dumps(bot.config, indent=2))
     
     except KeyboardInterrupt:
-        logger.info("🛑 Operation cancelled by user")
+        logger.info("Operation cancelled by user")
     except Exception as e:
-        logger.error(f"❌ Application error: {e}")
+        logger.error(f"Application error: {e}")
         sys.exit(1)
 
 if __name__ == "__main__":

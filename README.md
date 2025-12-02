@@ -1,38 +1,38 @@
-# UnsubSpamBot 🤖
+# UnsubSpamBot
 
 An intelligent email management system using machine learning to automatically detect spam emails and manage unwanted subscriptions. The system processes 100+ emails per run with 85%+ accuracy using ensemble ML models and comprehensive URL security analysis.
 
-## 🚀 Features
+## Features
 
-### 🧠 Advanced Spam Detection
+### Advanced Spam Detection
 
 - **Ensemble ML Models**: Naive Bayes, Random Forest, and Logistic Regression
 - **85%+ Accuracy**: Weighted voting system for optimal detection
 - **Lightweight Fallback**: Rule-based detection when ML unavailable
 - **Continuous Learning**: Model retraining capabilities
 
-### 🔗 Comprehensive URL Security Analysis
+### Comprehensive URL Security Analysis
 
 - **VirusTotal Integration**: Real-time threat intelligence
 - **Phishing Detection**: Advanced pattern recognition
 - **Redirect Chain Analysis**: Track malicious redirects
 - **Malicious Domain Detection**: Comprehensive blocklist checking
 
-### 📧 Intelligent Email Management
+### Intelligent Email Management
 
 - **Batch Processing**: Handle 100+ emails efficiently
 - **Automatic Unsubscription**: Smart unsubscribe from spam sources
 - **Database Tracking**: SQLite/MongoDB support for email history
 - **Continuous Monitoring**: Real-time email processing
 
-### ⚡ High Performance
+### High Performance
 
 - **Fast Processing**: Optimized for large email volumes
 - **Multi-threaded**: Parallel processing capabilities
 - **Resource Efficient**: Lightweight design with fallback modes
 - **Configurable**: Extensive customization options
 
-## 📦 Installation
+## Installation
 
 ### Prerequisites
 
@@ -62,7 +62,7 @@ setup_windows.bat
 python setup.py install
 ```
 
-## 🛠️ Configuration
+## Configuration
 
 ### Environment Variables
 
@@ -90,7 +90,7 @@ CONTINUOUS_MODE=false
 CHECK_INTERVAL_HOURS=1
 ```
 
-## 🎯 Usage
+## Usage
 
 ### Command Line Interface
 
@@ -123,11 +123,7 @@ python src/main.py train data/spam_dataset.csv
 python src/main.py config
 ```
 
-_See README_NEW.md for complete documentation_
-
 ---
-
-_UnsubSpamBot - Making email management intelligent and secure_ 🚀
 
 # Byte-compiled / optimized / DLL files
 
