@@ -34,6 +34,11 @@ MANIFEST
 pip-log.txt
 pip-delete-this-directory.txt
 
+# Logs
+**/logs/
+*.log
+logs/**
+
 # Unit test / coverage reports
 htmlcov/
 .tox/
@@ -78,10 +83,6 @@ ipython_config.py
 
 __pypackages__/
 
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
 # SageMath parsed files
 *.sage.py
 
@@ -120,21 +121,8 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
-
-# Abstra
-.abstra/
-
-
-
-# Ruff stuff:
-.ruff_cache/
-
 # PyPI configuration file
 .pypirc
-
-# Cursor
-.cursorignore
-.cursorindexingignore
 
 # Marimo
 marimo/_static/

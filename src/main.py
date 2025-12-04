@@ -38,6 +38,10 @@ import logging.config
 logging.config.dictConfig(LOGGING_CONFIG)
 logger = logging.getLogger(__name__)
 
+from dotenv import load_dotenv
+
+load_dotenv()
+
 class UnsubSpamBot:
     """
     Main application class for the UnsubSpamBot system.
