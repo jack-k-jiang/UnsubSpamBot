@@ -1,17 +1,3 @@
-"""
-UnsubSpamBot - Intelligent Email Management System
-Main application orchestrator for automated spam detection and unsubscription management.
-
-Features:
-- Ensemble ML models
-- Comprehensive URL security analysis with VirusTotal integration
-- Phishing detection and redirect chain analysis
-- Batch processing of 100+ emails per run
-- Automated unsubscription from spam senders
-- MongoDB integration for data storage
-- Real-time monitoring and statistics
-"""
-
 import argparse
 import logging
 import sys
@@ -43,10 +29,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class UnsubSpamBot:
-    """
-    Main application class for the UnsubSpamBot system.
-    Coordinates all components for intelligent email management.
-    """
     
     def __init__(self, config_file: str = None):
         """Initialize the UnsubSpamBot system."""

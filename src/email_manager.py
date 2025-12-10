@@ -1,6 +1,3 @@
-"""
-Email management with spam detection
-"""
 import imaplib
 import email
 import smtplib

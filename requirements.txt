@@ -39,9 +39,7 @@ pytest-cov>=4.1.0
 black>=23.7.0
 flake8>=6.0.0
 
-# Optional: Enhanced Features
-# Uncomment if needed:
-# spacy>=3.6.0  # Advanced NLP features
-# transformers>=4.21.0  # Transformer models for better spam detection
-# torch>=2.0.0  # PyTorch for deep learning models
-# tensorflow>=2.13.0  # TensorFlow alternative
+# SQL Libraries
+SQLAlchemy>=2.0
+alembic>=1.13
+psycopg2-binary>=2.9

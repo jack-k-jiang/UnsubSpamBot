@@ -1,6 +1,3 @@
-"""
-Configuration settings for the UnsubSpamBot project.
-"""
 import os
 from pathlib import Path
 
@@ -13,6 +10,11 @@ LOGS_DIR = BASE_DIR / "logs"
 # Ensure directories exist
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(LOGS_DIR, exist_ok=True)
+
+DATABASE_URL = os.getenv(
+    "DATABASE_URL",
+    "postgresql+psycopg2://unsub_bot:your_password@localhost:5432/unsub_spam"
+)
 
 # Model paths
 MODEL_PATHS = {
@@ -106,17 +108,5 @@ LOGGING_CONFIG = {
             'level': 'DEBUG',
             'propagate': False
         }
-    }
-}
-
-# Database configuration (for MongoDB integration)
-DATABASE_CONFIG = {
-    'mongodb_uri': os.getenv('MONGODB_URI', 'mongodb://localhost:27017/'),
-    'database_name': 'unsubspambot',
-    'collections': {
-        'emails': 'processed_emails',
-        'spam_reports': 'spam_reports',
-        'url_analysis': 'url_analysis',
-        'unsubscribe_attempts': 'unsubscribe_attempts'
     }
 }
