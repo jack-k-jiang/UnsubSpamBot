@@ -20,7 +20,7 @@ import os
 
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from config.settings import EMAIL_CONFIG, DATABASE_CONFIG, LOGS_DIR
+from config.settings import EMAIL_CONFIG, LOGS_DIR
 from src.spam_detector import SpamDetector
 from src.url_analyzer import URLAnalyzer
 

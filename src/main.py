@@ -13,7 +13,7 @@ sys.path.insert(0, str(Path(__file__).parent.parent))
 # Import from parent directory
 sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 
-from config.settings import LOGGING_CONFIG, EMAIL_CONFIG, DATABASE_CONFIG
+from config.settings import LOGGING_CONFIG, EMAIL_CONFIG
 from src.spam_detector import SpamDetector
 from src.url_analyzer import URLAnalyzer
 from src.email_manager import EmailManager, ProcessingStats
